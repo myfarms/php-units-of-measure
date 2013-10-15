@@ -38,11 +38,77 @@ abstract class PhysicalQuantity
      *
      * @return void
      */
-    public function __construct($value, $unit)
+    public function __construct($value = null, $unit = null)
+    {
+        $this->make($value, $unit);
+    }
+
+
+    /**
+     * Setter for the value
+     * 
+     * @param float $value The scalar value of the measurement
+     */
+    public function setValue($value)
     {
         $this->original_value = $value;
+    }
+
+    /**
+     * Getter for the value 
+     * 
+     * @return float The scalar value of the measurement
+     */
+    public function getValue()
+    {
+        return $this->original_value;
+    }
+
+
+    /**
+     * Setter for the unit
+     * 
+     * @param string $unit The unit of measure in which the value is provided
+     */
+    public function setUnit($unit)
+    {
         $this->original_unit = $unit;
     }
+
+
+    /**
+     * Getter for the unit 
+     * 
+     * @return string The unit of measure in which the value is provided
+     */
+    public function getUnit()
+    {
+        return $this->original_unit;
+    }
+
+
+    /**
+     * Reset the value and units, essentially giving us
+     * a new PhysicalQuantity object without re-instantiating.
+     *
+     * This is useful for dependency injection, since you can instantiate
+     * a physical quantity without parameters, inject it into another object,
+     * and have that object then set it's properties
+     * 
+     * @param float  $value The scalar value of the measurement
+     * @param string $unit  The unit of measure in which this value is provided
+     *
+     * @return PhysicalQuantity This object
+     */
+    public function make($value, $unit) 
+    {
+        $this->setValue($value);
+        $this->setUnit($unit);
+
+        return $this;
+    }
+
+
 
     /**
      * Display the value as a string, in the original unit of measure
