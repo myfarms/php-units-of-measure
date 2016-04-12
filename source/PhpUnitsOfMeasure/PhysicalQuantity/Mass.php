@@ -105,10 +105,10 @@ class Mass extends PhysicalQuantity
         $new_unit = new UnitOfMeasure(
             'ton',
             function ($x) {
-                return $x / 4.535924e2 * 2;
+                return $x / (4.535924e2 * 2);
             },
             function ($x) {
-                return $x * 4.535924e2 * 2;
+                return $x * (4.535924e2 * 2);
             }
         );
         $new_unit->addAlias('tons');
