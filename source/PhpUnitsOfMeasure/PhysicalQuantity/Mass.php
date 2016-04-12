@@ -82,8 +82,6 @@ class Mass extends PhysicalQuantity
                 return $x * 1e3;
             }
         );
-        $new_unit->addAlias('ton');
-        $new_unit->addAlias('tons');
         $new_unit->addAlias('tonne');
         $new_unit->addAlias('tonnes');
         $this->registerUnitOfMeasure($new_unit);
@@ -101,6 +99,19 @@ class Mass extends PhysicalQuantity
         $new_unit->addAlias('lbs');
         $new_unit->addAlias('pound');
         $new_unit->addAlias('pounds');
+        $this->registerUnitOfMeasure($new_unit);
+
+        // Ton (imperial)
+        $new_unit = new UnitOfMeasure(
+            'ton',
+            function ($x) {
+                return $x / 4.535924e2 * 2;
+            },
+            function ($x) {
+                return $x * 4.535924e2 * 2;
+            }
+        );
+        $new_unit->addAlias('tons');
         $this->registerUnitOfMeasure($new_unit);
 
         // Ounce
